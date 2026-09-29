@@ -1,7 +1,5 @@
 <section class="archive">
-  <% const sortByAsc=(key)=> {
-      return (a, b) => (key(a) > key(b)) ? 1 : ((key(b) > key(a)) ? -1 : 0);};
-    const sortByDesc = (key) => {
+  <% const sortByDesc = (key) => {
       return (a, b) => (key(a) > key(b)) ? -1 : ((key(b) > key(a)) ? 1 : 0);};
 
     var groupPosts = page.posts.data.reduce(

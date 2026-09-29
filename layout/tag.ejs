@@ -1,12 +1,5 @@
 <% if (page.tag) { %>
   <% page.posts.each(function(post){ %>
-    <% var tag;
-      for (item in theme.menu) {
-        if (item.path === '/tags/' + page.tag) {
-          tag = item;
-          break;
-        }
-      } %>
     <%- partial('_partial/' + (theme.card_style.tag || 'article-card'), { post: post }) %>
   <% }) %>
   <%- partial('_partial/pagination') %>
