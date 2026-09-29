@@ -4,22 +4,9 @@
   </header>
   <div class="ctnWrap">
     <div class="icons">
-      <% if (theme.social) { %>
-        <% var socialKeys = Object.keys(theme.social); %>
-        <% if (theme.social_order) {
-          socialKeys.sort(function(a, b) {
-            var aIndex = theme.social_order.indexOf(a);
-            var bIndex = theme.social_order.indexOf(b);
-            return (aIndex < 0 ? socialKeys.length : aIndex) - (bIndex < 0 ? socialKeys.length : bIndex);
-          });
-        } %>
-        <% socialKeys.forEach(function(key) { %>
-          <% var value = theme.social[key]; %>
-          <% if (value) { %>
-            <a href="<%= url_for(value) %>" target="_blank" class="nav-icn iconfont icon-<%= key.toLowerCase() %>"></a>
-          <% } %>
-        <% }); %>
-      <% } %>
+      <% social_links().forEach(function(item) { %>
+        <a href="<%= url_for(item.url) %>" target="_blank" class="nav-icn iconfont icon-<%= item.key.toLowerCase() %>"></a>
+      <% }); %>
     </div>
     <div class="menu">
       <% if (theme.menu) { %>
