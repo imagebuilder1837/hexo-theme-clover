@@ -1,0 +1,25 @@
+name: Clover example site
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: test/fixture/package-lock.json
+      - name: Install example site dependencies
+        working-directory: test/fixture
+        run: npm ci
+      - name: Build example site and check home filtering
+        working-directory: test/fixture
+        run: node ../integration.js

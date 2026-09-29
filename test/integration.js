@@ -35,7 +35,10 @@ const cases = [
 for (const [label, override, expected] of cases) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clover-example-'));
   try {
-    fs.cpSync(fixture, dir, { recursive: true });
+    fs.cpSync(fixture, dir, {
+      recursive: true,
+      filter: source => !['node_modules', 'public', 'db.json'].includes(path.basename(source))
+    });
     fs.symlinkSync(modules, path.join(dir, 'node_modules'), 'dir');
     fs.mkdirSync(path.join(dir, 'themes'));
     fs.symlinkSync(theme, path.join(dir, 'themes', 'clover'), 'dir');
