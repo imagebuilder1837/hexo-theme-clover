@@ -6,10 +6,10 @@
   </article>
   <footer class="f-cf">
     <% if (post.prev) { %>
-      <a href="<%- url_for(post.prev.path) %>" class="link f-fl">⟵<%= post.prev.title %></a>
+      <a href="<%- url_for(post.prev.path) %>" class="link f-fl"><span class="footer-icn iconfont icon-arrow-left"></span><%= post.prev.title %></a>
     <% } %>
     <% if (post.next) { %>
-      <a href="<%- url_for(post.next.path) %>" class="link f-fr"><%= post.next.title %>⟶</a>
+      <a href="<%- url_for(post.next.path) %>" class="link f-fr"><%= post.next.title %><span class="footer-icn iconfont icon-arrow-right"></span></a>
     <% } %>
   </footer>
 </section>

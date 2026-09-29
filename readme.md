@@ -1,128 +1,31 @@
 # Clover
-## [Preview](https://esappear.github.io/clover/)
-![preview](https://media.githubusercontent.com/avatars/8626321?orig=1&token=ANM6mziZ-bdE9fPaDWu1LVN0JQ-Vz-k_ks5b0I9FwA%3D%3D)
 
-## Prerequisite
-You got a blog project built by [Hexo](https://hexo.io). Your project directory should like this:
-```
-_config.yml  node_modules  package.json  public  scaffolds  source  themes
-```
-## Installation
-- Clone the repository.
-```
-git clone https://github.com/esappear/hexo-theme-clover themes/clover
-```
-- Set theme in `_config.yml` file of the project root:
-```
-theme: clover
-```
-- Add `hexo-renderer-sass`
-```
-npm install hexo-renderer-sass --save
-```
-## Features
-### Free home page.
-You can set posts of specific categories or tags in home page.
-```
-home:
-  # set card style of home page
-  # card: project-card
-  category: Projects
-  tag:
-    - js
-    - css
-  except_category: Something
-  except_tag: 'someTag'
-```
-Post which belongs to `category` or `tag` and don't belongs to `except_category` or `except_tag` will be filtered.
+A Hexo theme maintained from [the upstream Clover theme](https://github.com/esappear/hexo-theme-clover). The [upstream preview](https://esappear.github.io/clover/) shows the upstream version, not this maintenance line.
 
-### Page excerpt and photos
-You can set an excerpt or photos in `Front-matter`.
-```
----
-layout: post
-title: my_post_title
-excerpt: my_post_excerpt
-photos: [my_photo_url]
----
-```
-### Tags page.
-- Create a page named tags
-  ```
-  hexo new page "tags"
-  ```
-- Edit tags page, set page layout to `tag`.
-  ```
-  ---
-  layout: tag
-  title: tags
-  date: 2018-10-05 12:12:53
-  ---
-  ```
-### Categories page.
-- Create a page named categories
-  ```
-  hexo new page "categories"
-  ```
-- Edit categories page, set page layout to `category`.
-  ```
-  ---
-  layout: category
-  title: categories
-  date: 2018-10-05 12:12:53
-  ---
-  ```
-### About page.
-- Create a page named about
-  ```
-  hexo new page "about"
-  ```
-- Edit categories page, set page layout to `about`.
-  ```
-  ---
-  layout: about
-  title: about
-  date: 2018-10-05 12:12:53
-  ---
-  ```
+## Use
 
-### Social Media
-```
-social:
-  GitHub: your-url
-  Dribbble: your-url
-  Behance: your-url
-  Lofter: your-url
-  Instagram: your-url
+In a Hexo site with the EJS, Markdown and Sass renderers installed:
+
+```sh
+git clone --branch maintenance/generic https://github.com/ImageBuilder1837/hexo-theme-clover.git themes/clover
 ```
 
-### Custom Menu
-```
-menu:
-  Project: /
-  Stuffs: /tags/Stuffs
-  Archive: /archives
-  About: /about
+Set `theme: clover` in the site's `_config.yml`, then run `hexo generate`. Theme scripts also require `hexo-pagination` and `object-assign` in the site dependencies. To build the fictional example site from this checkout:
+
+```sh
+cd test/fixture
+npm ci
+mkdir -p themes
+ln -s ../../.. themes/clover
+npm run build
 ```
 
-### Card Style
-Two kinds of card style: `project-card` and `article-card`. (Never mind the name.)
-```
-card_style:
-  home: project-card
-  archive: article-card
-  tag: article-card
-  category: article-card
-```
+The example uses only fictional posts and example links.
 
-### Code Highlight
-- You should disable the default highlight setting in `.config.yml` and then get gihub-style code highlight powered by `hight.js`.
-```
-highlight:
-  enable: false
-```
-- declare language of code
-```md
-```js
-console.log('hello world);
-```
+Put your site's title, email, copyright text, social links, menu, and any other site-specific values in the site's `theme_config`, not in the theme's `_config.yml`. Hexo *merges* nested maps: a site override of `social.GitHub` replaces the example GitHub URL, but other default social keys would remain. The theme defaults to one visible `https://example.com/github` link. Set `social_order` to a list of names if the site's icon order must remain stable after merging. Check generated pages after changing social links.
+
+## Home page filter
+
+Optional `theme_config.home` values `category`, `tag`, `except_category`, and `except_tag` each accept a name or a list of names. A post matching either `category` or `tag` appears on the home page unless it matches either exclusion. With no nonempty inclusion, all posts (including untagged and uncategorized posts) appear unless excluded. Missing, `null`, empty-string and empty-list conditions do not restrict results.
+
+The theme's [integration test](test/integration.js) generates the fictional site for each filter case and checks the posts on the home page. Run it from a Hexo site with the example dependencies installed using `node themes/clover/test/integration.js`.

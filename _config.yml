@@ -1,6 +1,6 @@
 # Custom nav
 nav:
-  title: "Clover Tuan"
+  title: Clover
 
 favicon: ""
 
@@ -11,15 +11,11 @@ background:
 
 # Social media
 social:
-  Dribbble: https://dribbble.com/clovertuan
-  Behance: https://www.behance.net/clovertuan
-  Lofter: http://clovertuan.lofter.com/
-  Instagram: https://www.instagram.com/clovertuan/
-  GitHub: https://github.com/cloverTuan
+  GitHub: https://example.com/github
 
 # Custom footer
-mail: d.guangying@foxmail.com
-copyright: All rights reserved @Clover Tuan
+mail: hello@example.com
+copyright: Example site by <a href="https://example.com/author">Example Author</a> · <a href="https://example.com/terms">Example Terms</a>
 
 # Custom menu. You can specific the path or the card style (only useful for category page).
 # Two kinds of card style: 'project-card', 'article-card',
@@ -33,10 +29,12 @@ menu:
   #   card: article-card
   Home: /
   Archive: /archives
+  Tag: /tags
   About: /about
 
 # Specific default categories or tags of home page.
-# Post which belongs to `category` or `tag` and don't belongs to `except_category` or `except_tag` will be filtered.
+# Match either category or tag; any matching exception excludes the post.
+# Empty or missing conditions do not restrict the home page.
 home:
   # set card style of home page
   # category: Projects
