@@ -18,7 +18,6 @@ module.exports = function (locals) {
   const posts = locals.posts.sort(feed.order_by || '-date').toArray()
     .filter(post => post.published !== false && post.draft !== true && post.author !== false);
   const selected = feed.limit ? posts.slice(0, feed.limit) : posts;
-  if (!selected.length) return;
   const type = Array.isArray(feed.type) ? feed.type : [feed.type];
   const path = Array.isArray(feed.path) ? feed.path[type.indexOf('atom')] : feed.path || 'atom.xml';
   const siteLanguage = metadata.language({}, config);
@@ -34,7 +33,9 @@ module.exports = function (locals) {
       xml: `<entry xml:lang="${escape(data.language)}">${element('title', post.title)}${element('id', data.url)}${link(data.url, 'alternate')}${author(data.author)}${element('published', data.published)}${element('updated', data.modified || data.published)}${element('summary', data.description)}${content}${categories}</entry>`
     };
   });
-  const updated = entries.map(entry => entry.updated).sort().at(-1);
+  // An empty feed has no article timestamp. Its generation time describes
+  // the feed itself, not a revision to any excluded article.
+  const updated = entries.map(entry => entry.updated).sort().at(-1) || new Date().toISOString();
   const siteUrl = metadata.canonical({}, config);
   const hub = metadata.absolute(feed.hub, config);
   const icon = metadata.absolute(feed.icon, config);
