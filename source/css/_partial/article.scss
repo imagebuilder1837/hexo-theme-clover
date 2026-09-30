@@ -62,20 +62,9 @@ $brand-color: #f0534e;
     ul, ol {
       margin: 15px 0;
       margin-left:15px;
+      // Keep native bullets/numbering; an extra pseudo-element duplicates them.
       > li {
-        padding-left: 20px;
-        position: relative;
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 15px;
-          margin-top: -3px;
-          width: 6px;
-          height: 6px;
-          border-radius: 100%;
-          background-color: #444;
-        }
+        padding-left: 0;
       }
     }
     a {
