@@ -24,7 +24,7 @@ Post `author` has three states: omit to inherit `config.author`, use a nonempty 
 
 Rendered pages have directory-style absolute canonical URLs, with `index.html` collapsed and query/fragment removed; every pagination route refers to itself. Resource URLs are resolved separately and do not acquire a trailing slash. No alternate canonical front-matter field is supported.
 
-Post, `about`, and generic `page` layouts provide an H1. Start Markdown content at H2; Clover does not automatically delete or rewrite headings in another site's content. Listing pages use a visually hidden H1 with H2 group headings.
+Post and generic `page` layouts provide an H1; start their Markdown content at H2. The `about` layout renders only the content, so its Markdown must provide one H1. Clover does not automatically delete or rewrite headings in another site's content. Listing pages use a visually hidden H1 with H2 group headings.
 
 ### Optional Atom integration
 
@@ -53,9 +53,9 @@ prismjs:
   enable: false
 ```
 
-Token styles ship locally. Unknown/unmarked languages remain plaintext. Clover does not load a browser highlighter. Long code lines scroll horizontally. Optional `theme_config.code_copy: true` loads a small local script that adds accessible copy controls to article `pre > code` blocks. It copies displayed text (not byte-identical Markdown source); unsupported or rejected Clipboard API access reports failure and leaves manual selection available. No legacy clipboard fallback is used. With JavaScript disabled there are no buttons and code remains readable. The default is off.
+Token styles ship locally. Unknown/unmarked languages remain plaintext. Clover does not load a browser highlighter. Long code lines wrap automatically, including long unbroken tokens; code text and explicit newlines are preserved. Optional `theme_config.code_copy: true` loads a small local script that adds accessible copy controls to article `pre > code` blocks. It copies displayed text (not byte-identical Markdown source); unsupported or rejected Clipboard API access reports failure and leaves manual selection available. No legacy clipboard fallback is used. With JavaScript disabled there are no buttons and code remains readable. The default is off.
 
-After changing presentation, manually check representative desktop and narrow mobile pages: first images, image proportions, code token readability/scrolling, keyboard focus, copy success/failure and JavaScript-disabled reading. Generated-output tests do not establish browser layout, clipboard permission behavior or performance gains.
+After changing presentation, manually check representative desktop and narrow mobile pages: first images, image proportions, code token readability/wrapping, keyboard focus, copy success/failure and JavaScript-disabled reading. Generated-output tests do not establish browser layout, clipboard permission behavior or performance gains.
 
 ## Home page filter
 
