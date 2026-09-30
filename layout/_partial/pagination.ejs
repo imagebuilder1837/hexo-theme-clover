@@ -3,6 +3,7 @@
     <%- paginator({
       prev_text: '<span class="iconfont icon-arrow-left"></span>',
       next_text: '<span class="iconfont icon-arrow-right"></span>',
+      escape: false, // Only fixed, theme-owned arrow markup is passed above.
     }) %>
   </nav>
 <% } %>

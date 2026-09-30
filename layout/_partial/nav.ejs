@@ -9,14 +9,9 @@
       <% }); %>
     </div>
     <div class="menu">
-      <% if (theme.menu) { %>
-        <% for (key in theme.menu) { %>
-          <% value = theme.menu[key].path || theme.menu[key]; %>
-          <% if (value) { %>
-            <a href="<%= url_for(value) %>" class="nav-menu <%= is_current(value) ? 'z-active' : '' %>"><%= key.toUpperCase() %></a>
-          <% } %>
-        <% }; %>
-      <% } %>
+      <% menu_links().forEach(function(item) { %>
+        <a href="<%= url_for(item.path) %>" class="nav-menu <%= is_current(item.path) ? 'z-active' : '' %>"><%= item.key.toUpperCase() %></a>
+      <% }); %>
     </div>
   </div>
 </nav>
