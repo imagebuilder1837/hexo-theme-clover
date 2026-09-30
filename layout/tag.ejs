@@ -1,7 +1,7 @@
 <h1 class="visually-hidden"><%= clover_page_title() %></h1>
 <% if (page.tag) { %>
-  <% page.posts.each(function(post){ %>
-    <%- partial('_partial/' + (theme.card_style.tag || 'article-card'), { post: post }) %>
+  <% let imageIndex = 0; page.posts.each(function(post){ %>
+    <%- partial('_partial/' + (theme.card_style.tag || 'article-card'), { post: post, image_index: post.photos[0] ? imageIndex++ : imageIndex }) %>
   <% }) %>
   <%- partial('_partial/pagination') %>
 <% } else { %>

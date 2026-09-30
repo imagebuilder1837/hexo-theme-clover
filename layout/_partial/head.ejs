@@ -27,14 +27,8 @@
   <% if (theme.favicon){ %>
     <link rel="icon" href="<%- theme.favicon %>">
   <% } %>
-  <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
-  <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      document.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightBlock(block);
-      });
-    });
-  </script>
+  <% if (theme.code_copy) { %>
+    <script src="<%- url_for('js/code-copy.js') %>" defer></script>
+  <% } %>
   <%- css('css/index') %>
 </head>

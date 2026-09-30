@@ -1,7 +1,7 @@
 <h1 class="visually-hidden"><%= clover_page_title() %></h1>
 <% if (page.category) { %>
-  <% page.posts.each(function (post) { %>
-    <%- partial('_partial/' + (theme.card_style.category || 'article-card'), { post: post }) %>
+  <% let imageIndex = 0; page.posts.each(function (post) { %>
+    <%- partial('_partial/' + (theme.card_style.category || 'article-card'), { post: post, image_index: post.photos[0] ? imageIndex++ : imageIndex }) %>
   <% }) %>
 <% } else { %>
   <% 
@@ -14,15 +14,14 @@
     var totalPosts = site.posts.data.concat().sort(
       sortByAsc(function (post) {
         return post.categories.data[0] ? post.categories.data[0].name : CLOVER_OTHERS;}));
-    var posts = page.current ? totalPosts.slice(
-      config.per_page * (page.current - 1), config.per_page * page.current) : totalPosts;
+    var posts = totalPosts;
     var groupPosts = posts.reduce(
       (r, v, i, a, k = (function (post) {
         return post.categories.data[0] ? post.categories.data[0].name : CLOVER_OTHERS;
       })(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
 
-    result = [];
-    for (category in groupPosts){
+    var result = [];
+    for (const category in groupPosts){
       posts = groupPosts[category];
       result = result.concat({
         posts: posts.concat().sort(

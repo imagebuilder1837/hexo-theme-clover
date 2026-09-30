@@ -10,7 +10,7 @@ In a Hexo site with the EJS, Markdown and Sass renderers installed:
 git clone --branch main https://github.com/ImageBuilder1837/hexo-theme-clover.git themes/clover
 ```
 
-Set `theme: clover` in the site's `_config.yml`, then run `hexo generate`. Theme scripts also require `hexo-pagination` and `object-assign` in the site dependencies.
+Set `theme: clover` in the site's `_config.yml`, then run `hexo generate`. Theme scripts also require `hexo-pagination`, `object-assign`, `image-size` (2.x) and `parse5` (7.x) in the site dependencies.
 
 Put your site's title, email, copyright text, social links, menu, and any other site-specific values in the site's `theme_config`, not in the theme's `_config.yml`. Hexo *merges* nested maps: a site override of `social.GitHub` replaces the example GitHub URL, but other default social keys would remain. The theme defaults to one visible `https://example.com/github` link. Set `social_order` to a list of names if the site's icon order must remain stable after merging. Check generated pages after changing social links.
 
@@ -29,6 +29,33 @@ Post, `about`, and generic `page` layouts provide an H1. Start Markdown content 
 ### Optional Atom integration
 
 If the site installs/enables `hexo-generator-feed`, Clover replaces its existing `atom` generator under the same registered name, preserving the configured path, limit, ordering, content, icon and hub options. It does not enable a feed on its own and does not replace RSS. The author contract described above applies to Atom, OG and BlogPosting; RSS is outside that contract. Drafts and `author: false` posts are filtered before the Atom limit. Each entry uses its article language, author, summary and canonical URL. Atom's mandatory `updated` falls back to publication date when no substantive revision is recorded; this is not a public modification claim. A feed entry without any available author fails generation rather than inheriting a false identity.
+
+## Navigation and static content
+
+Create the category overview as a source page (for example `source/categories/index.md` with `layout: category`), just like the tag overview (`layout: tag`). The theme generator creates only individual category routes using Hexo's `category_dir`; it never creates the overview. Overview groups use the first category and include all posts, including an uncategorized group. Sites using a different `category_dir` should place the source overview and menu at that path. `category_generator.path` no longer creates a separate overview route.
+
+Set site `index_generator.per_page` independently of global `per_page`. Set `archive_generator.per_page` and `category_generator.per_page` explicitly to `0` if those indexes must remain unpaginated when global pagination is enabled. The category overview is always complete.
+
+Article body images and card covers receive intrinsic dimensions read from local source assets during generation. No image conversion or network probing occurs; unreadable or remote assets produce a warning instead of invented dimensions. Ordinary Markdown needs no size fields. Existing raw HTML dimensions and loading attributes are respected. Alt attributes/text are preserved as rendered, never generated; ordinary Markdown with no description may omit the attribute. The first body image and the first two covers on each listing are not lazy-loaded; subsequent images use native lazy loading. These are conservative position heuristics, not viewport or LCP measurements. Responsive CSS preserves aspect ratios.
+
+For local build highlighting without line numbers or language guessing, use site configuration:
+
+```yaml
+highlight:
+  enable: true
+  line_number: false
+  auto_detect: false
+  wrap: false
+  hljs: true
+  strip_indent: false
+  tab_replace: ''
+prismjs:
+  enable: false
+```
+
+Token styles ship locally. Unknown/unmarked languages remain plaintext. Clover does not load a browser highlighter. Long code lines scroll horizontally. Optional `theme_config.code_copy: true` loads a small local script that adds accessible copy controls to article `pre > code` blocks. It copies displayed text (not byte-identical Markdown source); unsupported or rejected Clipboard API access reports failure and leaves manual selection available. No legacy clipboard fallback is used. With JavaScript disabled there are no buttons and code remains readable. The default is off.
+
+After changing presentation, manually check representative desktop and narrow mobile pages: first images, image proportions, code token readability/scrolling, keyboard focus, copy success/failure and JavaScript-disabled reading. Generated-output tests do not establish browser layout, clipboard permission behavior or performance gains.
 
 ## Home page filter
 

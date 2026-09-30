@@ -1,7 +1,7 @@
 <div class="project-card">
   <% if (post.photos[0]) { %>
     <div class="imgWrap">
-      <img src="<%= post.photos[0] %>" alt="" />
+      <img src="<%= url_for(post.photos[0]) %>" alt="" <%- clover_card_image_attrs(post.photos[0], typeof image_index === 'undefined' ? 0 : image_index) %> />
     </div>
   <% } %>
   <div class="ctnWrap">

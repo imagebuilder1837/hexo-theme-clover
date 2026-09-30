@@ -50,10 +50,8 @@ card_style:
   tag: article-card
   category: article-card
 
-# category page
-category_generator:
-  category_per_page: 3
-  post_per_category: 3
+# Optional progressive enhancement; code remains readable without JavaScript.
+code_copy: false
 
 node_sass:
   precision: 5
