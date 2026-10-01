@@ -33,12 +33,9 @@ theme_config:
     GitHub: ''
   menu:
     About: ''
-  social_order:
-    - Mastodon
-    - GitHub
 ```
 
-`social_order` 可指定社交图标顺序，名称应对应实际配置的社交条目。菜单优先按站点 `theme_config.menu` 的声明顺序显示，未覆盖的默认条目仍会保留。
+社交链接与菜单分别优先按站点 `theme_config.social`、`theme_config.menu` 的声明顺序显示，未声明的默认条目追加在末尾。排序不再使用单独的 `social_order` 配置；旧配置需将顺序移到 `social` 条目的排列中。
 
 ## 分类与标签总览
 

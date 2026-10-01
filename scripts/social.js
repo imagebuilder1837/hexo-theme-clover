@@ -5,15 +5,8 @@
 hexo.extend.helper.register('social_links', function () {
   const social = this.theme.social;
   if (!social) return [];
-  const keys = Object.keys(social);
-  const order = this.theme.social_order;
-  if (order) {
-    keys.sort(function (a, b) {
-      const aIndex = order.indexOf(a);
-      const bIndex = order.indexOf(b);
-      return (aIndex < 0 ? keys.length : aIndex) - (bIndex < 0 ? keys.length : bIndex);
-    });
-  }
+  const declared = this.config.theme_config && this.config.theme_config.social;
+  const keys = [...new Set([...Object.keys(declared || social), ...Object.keys(social)])];
   return keys.filter(function (key) { return social[key]; })
     .map(function (key) { return { key: key, url: social[key] }; });
 });
