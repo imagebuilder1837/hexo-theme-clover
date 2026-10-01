@@ -57,7 +57,6 @@ hexo.extend.helper.register('clover_card_image_attrs', function (src, index = 0)
 
 hexo.extend.helper.register('clover_body_images', function (html, pagePath = '') {
   const fragment = parseFragment(html || '');
-  let index = 0;
   function walk(node) {
     if (node.tagName === 'img') {
       const attrs = Object.fromEntries(node.attrs.map(attr => [attr.name, attr.value]));
@@ -66,7 +65,7 @@ hexo.extend.helper.register('clover_body_images', function (html, pagePath = '')
       if (size && !attrs.width && !attrs.height) {
         node.attrs.push({ name: 'width', value: String(size.width) }, { name: 'height', value: String(size.height) });
       }
-      if (index++ > 0 && !attrs.loading) node.attrs.push({ name: 'loading', value: 'lazy' });
+      if (!attrs.loading) node.attrs.push({ name: 'loading', value: 'lazy' });
     }
     for (const child of node.childNodes || []) walk(child);
   }

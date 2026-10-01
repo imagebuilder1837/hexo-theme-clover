@@ -1,8 +1,21 @@
+// Taxonomy lists share the overview pages' insets; home cards remain denser.
+body[data-layout="category"], body[data-layout="tag"] {
+  .project-card { padding: 64px 90px; }
+  .project-card-continuous::after { left: 90px; right: 90px; }
+  @media screen and (max-width: 600px) {
+    .project-card { padding: 20px; }
+    .project-card-continuous::after { left: 20px; right: 20px; }
+  }
+}
+body[data-layout="home"] .project-card > .ctnWrap > :last-child {
+  @media screen and (max-width: 600px) { margin-bottom: 0; }
+}
+
 .project-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 80px 100px;
+  padding: 48px 64px;
   margin: 40px 0;
   background-color: white;
   color: #333;
@@ -50,8 +63,8 @@
     &::after {
       content: '';
       position: absolute;
-      left: 100px;
-      right: 100px;
+      left: 64px;
+      right: 64px;
       bottom: 0;
       height: 1px;
       background-color: #e5e5e5;

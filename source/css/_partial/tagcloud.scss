@@ -1,6 +1,7 @@
 .tagcloud {
   background-color: white;
-  padding: 60px;
+  padding: 64px 90px;
+  @media screen and (max-width: 600px) { padding: 20px; }
   > a {
     display: inline-block;
     padding: 10px;

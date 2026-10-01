@@ -1,4 +1,7 @@
-<section class="article">
+<section class="article article-post">
+  <% if (post.cover !== false && post.photos && post.photos[0]) { %>
+    <img class="cover" src="<%= url_for(post.photos[0]) %>" alt="" <%- clover_card_image_attrs(post.photos[0]) %> loading="eager" />
+  <% } %>
   <h1 class="title"><%= post.title %></h1>
   <p class="sub"><%- date(post.date, 'MMM D, YYYY') %></p>
   <article class="content">
