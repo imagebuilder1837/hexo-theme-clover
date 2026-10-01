@@ -4,7 +4,7 @@
 
 ## 使用实例
 
-[Image Builder 的博客](https://imagebuilder1837.github.io/) 使用了本主题及个人配置。
+[imagebuilder1837 的博客](https://imagebuilder1837.github.io/) 使用了本主题及个人配置。
 
 ## 安装
 
