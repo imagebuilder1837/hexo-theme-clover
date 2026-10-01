@@ -1,18 +1,18 @@
-@import 'mixins.scss';
-@import 'normalize.css';
-@import 'layout.scss';
-@import 'global.scss';
-@import 'fonts.scss';
-@import 'functions.scss';
+@use 'mixins';
+@use 'normalize.css';
+@use 'layout';
+@use 'global';
+@use 'fonts';
+@use 'functions';
 
-@import '_partial/nav.scss';
-@import '_partial/footer.scss';
-@import '_partial/pagination.scss';
-@import '_partial/project-card.scss';
-@import '_partial/article.scss';
-@import '_partial/archive.scss';
-@import '_partial/about.scss';
-@import '_partial/tagcloud.scss';
+@use '_partial/nav';
+@use '_partial/footer';
+@use '_partial/pagination';
+@use '_partial/project-card';
+@use '_partial/article';
+@use '_partial/archive';
+@use '_partial/about';
+@use '_partial/tagcloud';
 
 // Accessible page headings without introducing new visible layout rows.
 .visually-hidden {
