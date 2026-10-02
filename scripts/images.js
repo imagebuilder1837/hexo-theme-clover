@@ -52,7 +52,7 @@ hexo.extend.filter.register('before_generate', function () {
 hexo.extend.helper.register('clover_card_image_attrs', function (src, index = 0) {
   const size = dimensions(src, this.page.path || '');
   const attrs = size ? `width="${size.width}" height="${size.height}"` : '';
-  return attrs + (index >= 2 ? ' loading="lazy"' : '');
+  return attrs + (index >= 3 ? ' loading="lazy"' : '');
 });
 
 hexo.extend.helper.register('clover_body_images', function (html, pagePath = '') {

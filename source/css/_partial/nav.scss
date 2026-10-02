@@ -2,11 +2,12 @@
   margin-bottom: 48px;
   > .header {
     margin-bottom: 10px;
+    // Match the inline title's metrics so font loading cannot resize its line box.
+    font-size: 64px;
+    line-height: 53px;
+    font-family: ThisJuly;
     > .title {
-      font-size: 64px;
-      line-height: 53px;
       color: #333;
-      font-family: ThisJuly;
       &:hover {
         opacity: .7;
       }

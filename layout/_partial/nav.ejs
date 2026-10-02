@@ -5,7 +5,7 @@
   <div class="ctnWrap">
     <div class="icons">
       <% social_links().forEach(function(item) { %>
-        <a href="<%= url_for(item.url) %>" target="_blank" class="nav-icn iconfont icon-<%= item.key.toLowerCase() %>"></a>
+        <a href="<%= url_for(item.url) %>" target="_blank" aria-label="<%= item.key %>" class="nav-icn iconfont icon-<%= item.key.toLowerCase() %>"></a>
       <% }); %>
     </div>
     <div class="menu">
