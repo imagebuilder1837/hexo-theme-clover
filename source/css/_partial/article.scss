@@ -10,6 +10,13 @@ body[data-layout="about"] .article {
   @media screen and (max-width: 600px) { padding: 20px layout.$narrow-inset; }
 }
 .article {
+  --heading-h1-size: 32px;
+  --heading-h2-size: 28px;
+  --heading-h3-size: 24px;
+  --heading-h4-size: 21px;
+  --heading-h5-size: 18px;
+  --heading-h6-size: 16px;
+
   margin: 48px 0 80px;
   padding: 48px 90px;
   background-color: white;
@@ -25,8 +32,8 @@ body[data-layout="about"] .article {
   }
   > .title {
     margin-top: 0;
-    font-size: 28px;
-    line-height: 40px;
+    font-size: var(--heading-h1-size);
+    line-height: 1.4;
     margin-bottom: 10px;
     font-weight: 600;
   }
@@ -37,11 +44,23 @@ body[data-layout="about"] .article {
   > .content {
     padding-bottom: 0;
     > :first-child { margin-top: 0; }
-    h1, h2, h3, h4, h5{
-      font-size:24px;
+    h1, h2, h3, h4, h5, h6 {
       font-weight: 600;
-      line-height: 40px;
-      margin-bottom: 15px;
+      line-height: 1.4;
+      margin-top: 1.5em;
+      margin-bottom: 0.6em;
+    }
+    h1:not(.visually-hidden) { font-size: var(--heading-h1-size); }
+    h2:not(.visually-hidden) { font-size: var(--heading-h2-size); }
+    h3:not(.visually-hidden) { font-size: var(--heading-h3-size); }
+    h4:not(.visually-hidden) { font-size: var(--heading-h4-size); }
+    h5:not(.visually-hidden) { font-size: var(--heading-h5-size); }
+    h6:not(.visually-hidden) { font-size: var(--heading-h6-size); }
+
+    hr {
+      margin: 32px 0;
+      border: 0;
+      border-top: 1px solid #ddd;
     }
     
     p {
@@ -80,8 +99,8 @@ body[data-layout="about"] .article {
 
     ul, ol {
       margin: 15px 0;
-      margin-left:15px;
-      // Keep native bullets/numbering; an extra pseudo-element duplicates them.
+      // Each nesting level adds 32px of text inset, retaining native markers.
+      padding-left: 32px;
       > li {
         padding-left: 0;
       }
@@ -179,25 +198,26 @@ body[data-layout="about"] .article {
     }
 
     blockquote {
-      border-left: 4px solid #ddd;
       color: #7a7a7a;
       border-left: 5px solid #ccc;
       padding-left: 15px;
       font-size: 16px;
-      margin-bottom: 15px;
+      margin: 20px 0;
 
       > :last-child {
         margin-bottom: 0;
       }
     }
 
-    p code {
+    // Tight lists and other inline contexts may have no <p>; exclude all pre descendants.
+    code:not(pre code) {
       padding: 2px 4px;
-      word-wrap: break-word;
+      overflow-wrap: anywhere;
       color: #555;
       background: #eee;
       border-radius: 3px;
-      font-size: 13px;
+      font-size: 0.8125em;
+      line-height: inherit;
     }
 
     table {
