@@ -1,3 +1,6 @@
+$overview-inset: 90px;
+$narrow-inset: 20px;
+
 #container {
   max-width: 980px;
   margin: 64px auto 75px;
@@ -6,8 +9,4 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
-}
-
-#panel {
-  background-color: white;
 }

@@ -1,0 +1,15 @@
+<section class="archive">
+  <% groups.forEach(function (group) { %>
+    <section class="archive-category">
+      <h2 class="title"><%= clover_title(group.title) %></h2>
+      <ul class="menu">
+        <% group.posts.forEach(function (post) { %>
+          <li>
+            <a href="<%- url_for(post.path) %>"><%= clover_title(post.title) %></a>
+            <span class="date"><%- date(post.date, 'MMM D, YYYY') %></span>
+          </li>
+        <% }); %>
+      </ul>
+    </section>
+  <% }); %>
+</section>

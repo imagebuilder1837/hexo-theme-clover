@@ -17,24 +17,16 @@ social:
 mail: hello@example.com
 copyright: Example site by <a href="https://example.com/author">Example Author</a> · <a href="https://example.com/terms">Example Terms</a>
 
-# Custom menu. You can specific the path or the card style (only useful for category page).
-# Two kinds of card style: 'project-card', 'article-card',
-# Never mind the name.
+# Custom menu
 menu:
-  # Project:
-  #   path: /categories/Projects
-  #   card: project-card
-  # Stuffs:
-  #   path: /tags/Stuffs
-  #   card: article-card
   Home: /
   Archive: /archives
   Tag: /tags
   About: /about
 
+# List card styles
 card_style:
   home: project-card
-  archive: article-card
   tag: article-card
   category: article-card
 

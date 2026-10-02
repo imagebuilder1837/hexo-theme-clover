@@ -1,10 +1,12 @@
+@use '../layout';
+
 // Taxonomy lists share the overview pages' insets; home cards remain denser.
 body[data-layout="category"], body[data-layout="tag"] {
-  .project-card { padding: 64px 90px; }
-  .project-card-continuous::after { left: 90px; right: 90px; }
+  .project-card { padding: 64px layout.$overview-inset; }
+  .project-card-continuous::after { left: layout.$overview-inset; right: layout.$overview-inset; }
   @media screen and (max-width: 600px) {
-    .project-card { padding: 20px; }
-    .project-card-continuous::after { left: 20px; right: 20px; }
+    .project-card { padding: 20px layout.$narrow-inset; }
+    .project-card-continuous::after { left: layout.$narrow-inset; right: layout.$narrow-inset; }
   }
 }
 body[data-layout="home"] .project-card > .ctnWrap > :last-child {

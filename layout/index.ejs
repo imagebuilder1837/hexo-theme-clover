@@ -1,5 +1,3 @@
 <h1 class="visually-hidden"><%= clover_page_title() %></h1>
-<% let imageIndex = 0; page.posts.each(function(post){ %>
-  <%- partial('_partial/' + (theme.card_style.home || 'project-card') , { post: post, image_index: post.photos[0] ? imageIndex++ : imageIndex }) %>
-<% }) %>
+<%- partial('_partial/card-list', { posts: page.posts, card_context: 'home' }) %>
 <%- partial('_partial/pagination') %>

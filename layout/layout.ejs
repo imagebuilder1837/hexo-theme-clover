@@ -2,7 +2,7 @@
 <% const layout = is_home() ? 'home' : is_post() ? 'post' : is_category() ? 'category' : is_tag() ? 'tag' : is_archive() ? 'archive' : page.layout || 'page'; %>
 <body data-layout="<%= layout %>" style="
 <% if (theme.background.image) { %>
-  background: url(<%= theme.background.image %>) center center no-repeat;
+  background: url(<%= url_for(theme.background.image) %>) center center no-repeat;
   background-size: contain;
 <% } %>
 <% if (theme.background.color) { %>

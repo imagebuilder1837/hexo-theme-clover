@@ -25,6 +25,8 @@ theme_config:
 
 `title` 是站点标题，`theme_config.nav.title` 是主题导航标题。主题默认值中的邮箱、版权文字和社交链接只是示例，应替换或清空。
 
+子路径部署时，`url` 应包含子路径，`root` 与其一致。`favicon` 和 `background.image` 的本地地址按站点 root 解析，完整外部 URL 保持外部地址。
+
 Hexo 会深合并配置中的映射。例如，只新增一个社交链接不会删除默认的 GitHub 链接；只新增菜单也不会删除默认的 Tag、About。要隐藏继承的条目，将对应值设为空：
 
 ```yaml
@@ -36,6 +38,8 @@ theme_config:
 ```
 
 社交链接与菜单分别优先按站点 `theme_config.social`、`theme_config.menu` 的声明顺序显示，未声明的默认条目追加在末尾。排序不再使用单独的 `social_order` 配置；旧配置需将顺序移到 `social` 条目的排列中。
+
+菜单值支持路径字符串或含 `path` 的对象，不支持逐菜单的 `card` 选项。列表样式由 `theme_config.card_style` 的 `home`、`category`、`tag` 控制，支持 `project-card` 和 `article-card`。归档使用分组列表；遗留 `card_style.archive` 不生效。
 
 ## 分类与标签总览
 

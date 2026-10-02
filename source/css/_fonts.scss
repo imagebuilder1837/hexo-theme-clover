@@ -1,18 +1,18 @@
 @font-face {
   font-family: "BebasNeue";
-  src: url("/fonts/BebasNeue.otf");
+  src: url("../fonts/BebasNeue.otf");
 }
 
 @font-face {
   font-family: "ThisJuly";
-  src: url("/fonts/ThisJuly.otf");
+  src: url("../fonts/ThisJuly.otf");
 }
 
 @font-face {
   font-family: "iconfont"; /* Project id 4356364 */
-  src: url("/fonts/iconfont/iconfont.woff2") format("woff2"),
-    url("/fonts/iconfont/iconfont.woff") format("woff"),
-    url("/fonts/iconfont/iconfont.ttf") format("truetype");
+  src: url("../fonts/iconfont/iconfont.woff2") format("woff2"),
+    url("../fonts/iconfont/iconfont.woff") format("woff"),
+    url("../fonts/iconfont/iconfont.ttf") format("truetype");
 }
 
 .iconfont {

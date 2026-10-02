@@ -2,19 +2,36 @@
 
 const metadata = require('./lib/metadata');
 
+function pageTitle(context, fallback = context.config.title) {
+  let title;
+  if (context.is_archive()) {
+    title = `${context.__('archive_a')}${context.page.year ? ': ' + context.page.year + (context.page.month ? '/' + context.page.month : '') : ''}`;
+  } else if (context.is_category()) {
+    title = `${context.__('category')}: ${context.page.category}`;
+  } else if (context.is_tag()) {
+    title = `${context.__('tag')}: ${context.page.tag}`;
+  } else {
+    const layoutTitle = { category: 'categories', tag: 'tags', about: 'about' }[context.page.layout];
+    title = !context.is_post() && layoutTitle ? context.__(layoutTitle) : context.page.title || fallback;
+  }
+  return metadata.plain(title);
+}
+
+hexo.extend.helper.register('clover_title', metadata.plain);
+hexo.extend.helper.register('clover_page_title', function (fallback) {
+  return pageTitle(this, fallback);
+});
 hexo.extend.helper.register('clover_metadata', function () {
-  return metadata.resolve(this.page, this.config, this.is_post());
+  const title = pageTitle(this, '');
+  const siteTitle = metadata.plain(this.config.title);
+  return {
+    ...metadata.resolve(this.page, this.config, this.is_post()),
+    title: title || siteTitle,
+    documentTitle: title ? `${title} | ${siteTitle}` : siteTitle
+  };
 });
 hexo.extend.helper.register('clover_metadata_html', function (data) {
   return metadata.html(data, this.config, this.is_post(), this.theme);
-});
-hexo.extend.helper.register('clover_page_title', function (fallback) {
-  if (this.is_archive()) return `${this.__('archive_a')}${this.page.year ? ': ' + this.page.year + (this.page.month ? '/' + this.page.month : '') : ''}`;
-  if (this.is_category()) return `${this.__('category')}: ${this.page.category}`;
-  if (this.is_tag()) return `${this.__('tag')}: ${this.page.tag}`;
-  const layoutTitle = { category: 'categories', tag: 'tags', about: 'about' }[this.page.layout];
-  if (!this.is_post() && layoutTitle) return this.__(layoutTitle);
-  return this.page.title || (fallback === undefined ? this.config.title : fallback);
 });
 
 // Replace only the existing Atom generator, not its route or RSS sibling.

@@ -1,4 +1,3 @@
-@use 'mixins';
 @use 'normalize.css';
 @use 'layout';
 @use 'global';
@@ -11,7 +10,6 @@
 @use '_partial/project-card';
 @use '_partial/article';
 @use '_partial/archive';
-@use '_partial/about';
 @use '_partial/tagcloud';
 
 // Accessible page headings without introducing new visible layout rows.

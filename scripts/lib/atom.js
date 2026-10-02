@@ -30,7 +30,7 @@ module.exports = function (locals) {
     const content = feed.content && post.content ? `<content type="html">${escape(post.content)}</content>` : '';
     return {
       updated: data.modified || data.published,
-      xml: `<entry xml:lang="${escape(data.language)}">${element('title', post.title)}${element('id', data.url)}${link(data.url, 'alternate')}${author(data.author)}${element('published', data.published)}${element('updated', data.modified || data.published)}${element('summary', data.description)}${content}${categories}</entry>`
+      xml: `<entry xml:lang="${escape(data.language)}">${element('title', data.title)}${element('id', data.url)}${link(data.url, 'alternate')}${author(data.author)}${element('published', data.published)}${element('updated', data.modified || data.published)}${element('summary', data.description)}${content}${categories}</entry>`
     };
   });
   // An empty feed has no article timestamp. Its generation time describes
@@ -41,6 +41,6 @@ module.exports = function (locals) {
   const icon = metadata.absolute(feed.icon, config);
   return {
     path,
-    data: `<?xml version="1.0" encoding="UTF-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="${escape(siteLanguage)}">${element('title', config.title)}${element('id', siteUrl)}${element('subtitle', config.description || config.subtitle)}${element('updated', updated)}${link(siteUrl, 'alternate')}${link(metadata.absolute(path, config), 'self')}${hub ? link(hub, 'hub') : ''}${element('icon', icon)}${author(typeof config.author === 'string' ? config.author.trim() : undefined)}<generator uri="https://hexo.io/">Hexo / Clover</generator>${entries.map(entry => entry.xml).join('\n')}</feed>`
+    data: `<?xml version="1.0" encoding="UTF-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="${escape(siteLanguage)}">${element('title', metadata.plain(config.title))}${element('id', siteUrl)}${element('subtitle', config.description || config.subtitle)}${element('updated', updated)}${link(siteUrl, 'alternate')}${link(metadata.absolute(path, config), 'self')}${hub ? link(hub, 'hub') : ''}${element('icon', icon)}${author(typeof config.author === 'string' ? config.author.trim() : undefined)}<generator uri="https://hexo.io/">Hexo / Clover</generator>${entries.map(entry => entry.xml).join('\n')}</feed>`
   };
 };

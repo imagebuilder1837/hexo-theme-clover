@@ -1,0 +1,6 @@
+<% const style = (theme.card_style || {})[card_context] || (card_context === 'home' ? 'project-card' : 'article-card');
+if (!['project-card', 'article-card'].includes(style)) throw new Error('Unsupported Clover card style: ' + style);
+let imageIndex = 0;
+posts.each(function (post) { %>
+  <%- partial('_partial/card', { post: post, card_style: style, image_index: post.photos && post.photos[0] ? imageIndex++ : imageIndex }) %>
+<% }); %>

@@ -1,6 +1,6 @@
 <section class="article">
-  <h1 class="title"><%= page.title %></h1>
+  <h1 class="title"><%= clover_title(page.title) %></h1>
   <article class="content">
-    <%- page.content %>
+    <%- clover_body_images(page.content, page.path) %>
   </article>
 </section>

@@ -1,0 +1,12 @@
+<div class="project-card<%= card_style === 'article-card' ? ' project-card-continuous' : '' %>">
+  <% if (post.photos && post.photos[0]) { %>
+    <div class="imgWrap">
+      <img src="<%= url_for(post.photos[0]) %>" alt="" <%- clover_card_image_attrs(post.photos[0], image_index) %> />
+    </div>
+  <% } %>
+  <div class="ctnWrap">
+    <a href="<%- url_for(post.path) %>" class="title"><%= clover_title(post.title) %></a>
+    <section class="desc"><%- partial('excerpt', { post: post }) %></section>
+    <p class="sub"><%- date(post.date, 'MMM D, YYYY') %></p>
+  </div>
+</div>

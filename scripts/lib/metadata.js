@@ -108,7 +108,7 @@ function html(data, config, article, theme = {}) {
   meta('og:title', data.title);
   meta('og:description', data.description);
   meta('og:url', data.url);
-  meta('og:site_name', config.title);
+  meta('og:site_name', plain(config.title));
   meta('og:locale', locale(data.language));
   data.images.forEach(image => meta('og:image', image));
   meta('article:author', data.author);

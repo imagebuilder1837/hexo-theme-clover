@@ -1,11 +1,13 @@
+@use '../layout';
+
 $brand-color: #f0534e;
 
 // Posts keep a distinct ending rhythm; standalone pages use their outer inset.
 .article.article-post > .content { padding-bottom: 32px; }
 .article:not(.article-post) > .content > :last-child { margin-bottom: 0; }
 body[data-layout="about"] .article {
-  padding: 64px 90px;
-  @media screen and (max-width: 600px) { padding: 20px; }
+  padding: 64px layout.$overview-inset;
+  @media screen and (max-width: 600px) { padding: 20px layout.$narrow-inset; }
 }
 .article {
   margin: 48px 0 80px;
